@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Calculator
 {
-    public class OperationsCalculator
+    public class OperationsCalculator : IOperations
     {
-        private List<string> operatorList = new List<string>();
-        public List<string> OperatorList
+        private IList<string> operatorList = new List<string>();
+        public IList<string> OperatorList
         {
             get { GetOperatorList(); return operatorList; }
             set { operatorList = value; }
@@ -23,7 +23,7 @@ namespace Calculator
             OperatorList = (BinaryOperations.Keys.ToList<string>().Concat(UnaryOperations.Keys.ToList<string>()).ToList<string>());
         }
 
-        public Dictionary<string, int> PriorityOperations = new Dictionary<string, int>
+        private Dictionary<string, int> priorityOperations = new Dictionary<string, int>
         {
             {"(", 0},
             {")", 0},
@@ -34,17 +34,35 @@ namespace Calculator
             {"_", 100} //унарный минус
         };
 
-        public Dictionary<string, Func<double, double, double>> BinaryOperations = new Dictionary<string, Func<double, double, double>>
+        public Dictionary<string, int> PriorityOperations
+        {
+            get { return priorityOperations; }
+            set { priorityOperations = value; }
+        }
+
+        private Dictionary<string, Func<double, double, double>> binaryOperations = new Dictionary<string, Func<double, double, double>>
         {
             {"+", (a, b) => a + b},
             {"-", (a, b) => a - b},
             {"*", (a, b) => a * b},
             {"/", (a, b) => a / b}
         };
-        public Dictionary<string, Func<double, double>> UnaryOperations = new Dictionary<string, Func<double, double>>
+
+        public Dictionary<string, Func<double, double, double>> BinaryOperations
+        {
+            get { return binaryOperations; }
+            set { binaryOperations = value; }
+        }
+        private Dictionary<string, Func<double, double>> unaryOperations = new Dictionary<string, Func<double, double>>
         {
             {"_", a => -a}
         };
+
+        public Dictionary<string, Func<double, double>> UnaryOperations
+        {
+            get { return unaryOperations; }
+            set { unaryOperations = value; }
+        }
         public void AddBinaryOperation(string operation, Func<double, double, double> action)
         {
 

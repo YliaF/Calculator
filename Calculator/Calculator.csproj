@@ -41,6 +41,9 @@
   <ItemGroup>
     <Compile Include="Calc.cs" />
     <Compile Include="ICalc.cs" />
+    <Compile Include="IOperations.cs" />
+    <Compile Include="IParser.cs" />
+    <Compile Include="IPostfix.cs" />
     <Compile Include="OperationsCalculator.cs" />
     <Compile Include="ParserString.cs" />
     <Compile Include="PostfixCalc.cs" />

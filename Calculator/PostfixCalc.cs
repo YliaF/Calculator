@@ -7,24 +7,36 @@ using System.Globalization;
 
 namespace Calculator
 {
-    public class PostfixCalc
+    public class PostfixCalc: IPostfix
     {
-        private OperationsCalculator op = new OperationsCalculator();
 
-        public OperationsCalculator Operations
+        private IOperations operations;
+
+        public IOperations Operations
         {
-            get { return op; }
-            set { op = value; }
+            get { return operations; }
+            set { operations = value; }
         }
-        private List<string> postfixExpression = new List<string>();
-        private double countedResult;
 
-        private bool countedResultInitialized = false;
-        public List<string> PostfixExpression
+        private IParser parser;
+
+        public IParser Parser
+        {
+            get { return parser; }
+            set { parser = value; }
+        }
+
+        private IList<string> postfixExpression = new List<string>();
+
+        public IList<string> PostfixExpression
         {
             get { return postfixExpression; }
             set { postfixExpression = value; }
         }
+
+        private bool countedResultInitialized = false;
+
+        private double countedResult;
 
         public double CountedResult
         {
@@ -36,25 +48,25 @@ namespace Calculator
             }
             set { countedResult = value; }
         }
-        public PostfixCalc(string inputExpr)
-        {
-            ParserString objParserString = new ParserString(op.OperatorList, inputExpr);
-            GetPostfix(objParserString.ResultString);
-        }
 
         public PostfixCalc()
         {
         }
-        public void GetPostfix(string inputExpr)
+
+        public PostfixCalc(IOperations operations, IParser parser)
         {
-            ParserString objParserString = new ParserString(op.OperatorList, inputExpr);
-            GetPostfix(objParserString.ResultString);
+            Operations = operations;
+            Parser = parser;
+        }
+        public void CreatePostfixExpression(string inputExpression)
+        {
+            GetPostfix(Parser.ParseExpression(inputExpression));
         }
 
-        public void GetPostfix(string[] ProcStr)
+        public void GetPostfix(string[] parseString)
         {
             Stack<string> stackOperators = new Stack<string>();
-            foreach (string token in ProcStr)
+            foreach (string token in parseString)
             {
                 if (token == "(")
                     stackOperators.Push(token);
@@ -89,7 +101,6 @@ namespace Calculator
 
         public void Counting()
         {
-
             Stack<double> stackNumber = new Stack<double>();
             double first, second;
             foreach (string token in this.PostfixExpression.ToArray())
@@ -149,7 +160,7 @@ namespace Calculator
         {
             try
             {
-                return op.PriorityOperations[token];
+                return Operations.PriorityOperations[token];
             }
             catch (KeyNotFoundException e)
             {
@@ -160,12 +171,12 @@ namespace Calculator
 
         private bool IsOperation(string token)
         {
-            return op.OperatorList.Contains(token);
+            return Operations.OperatorList.Contains(token);
         }
 
         private double ApplyOperations(double first, double second, string token)
         {
-            return op.BinaryOperations[token](first, second);
+            return Operations.BinaryOperations[token](first, second);
 
         }
 

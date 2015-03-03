@@ -10,7 +10,10 @@ namespace Calculator
     {
         public void Calculate(string expression)
         {
-            PostfixCalc obj = new PostfixCalc(expression);
+            IOperations operations = new OperationsCalculator();
+            IParser parser = new ParserString(operations.OperatorList);
+            IPostfix obj = new PostfixCalc(operations,parser);
+            obj.CreatePostfixExpression(expression);
             obj.Counting();
             Result = obj.CountedResult;
         }

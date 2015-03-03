@@ -10,11 +10,14 @@ namespace CalculatorTests
         [TestMethod]
         public void ConvertToDouble()
         {
-            PostfixCalc objPostfix = new PostfixCalc("(10+4)%3");
-
+            IOperations operations = new OperationsCalculator();
+            IParser parser = new ParserString(operations.OperatorList);
+            IPostfix obj = new PostfixCalc(operations, parser);
+            obj.CreatePostfixExpression("(10+4)%3");
+            
             try
             {
-                objPostfix.Counting();
+                obj.Counting();
                 Assert.Fail("no exception thrown");
             }
             catch (Exception e)
@@ -26,11 +29,15 @@ namespace CalculatorTests
         [TestMethod]
         public void DivisionByZero()
         {
-            PostfixCalc objPostfix = new PostfixCalc("(10+4)/0");
+            IOperations operations = new OperationsCalculator();
+            IParser parser = new ParserString(operations.OperatorList);
+            IPostfix obj = new PostfixCalc(operations, parser);
+            obj.CreatePostfixExpression("(10+4)/0");
+            
 
             try 
             {
-                objPostfix.Counting();
+                obj.Counting();
                 Assert.Fail("no exception thrown");
             }
             catch (Exception e)

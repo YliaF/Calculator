@@ -7,18 +7,28 @@ using System.Text.RegularExpressions;
 
 namespace Calculator
 {
-    public class ParserString
+    public class ParserString : IParser
     {
         private string parserPattern = @"(\()|(\))|(_)";
 
-        public ParserString(List<string> OperatorList, string inputString)
+        public string ParserPattern
         {
-            CreatePattern(OperatorList);
-            inputString = ProcessingString(inputString);
-            ResultString = Regex.Split(inputString, ParserPattern).Where(ch => !string.IsNullOrEmpty(ch)).ToArray();
+            get { return parserPattern; }
+            set { parserPattern = value; }
         }
 
-        private void CreatePattern(List<string> OperatorList)
+        public string[] ParseExpression(string inputExpression)
+        {
+            inputExpression = ProcessingString(inputExpression);
+            return Regex.Split(inputExpression, ParserPattern).Where(ch => !string.IsNullOrEmpty(ch)).ToArray();
+        }
+
+        public ParserString(IList<string> list)
+        {
+            CreatePattern(list);
+        }
+
+        private void CreatePattern(IList<string> OperatorList)
         {
             foreach (string op in OperatorList)
             {
@@ -37,25 +47,6 @@ namespace Calculator
         public static string ReplaceUnarOperator(string src)
         {
             return Regex.Replace(Regex.Replace(src, @"(\(-)", "(_"), @"(\A[-]{1})", "_");
-        }
-
-        private string[] resultString;
-
-        public string[] ResultString
-        {
-            get { return resultString; }
-            set { resultString = value; }
-        }
-
-        public string ParserPattern
-        {
-            get { return parserPattern; }
-            set { parserPattern = value; }
-        }
-
-        public ParserString(string inputString)
-        {
-            ResultString = Regex.Split(inputString, ParserPattern).Where(ch => !string.IsNullOrEmpty(ch)).ToArray();
         }
     }
 }
