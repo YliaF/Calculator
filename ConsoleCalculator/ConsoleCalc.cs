@@ -11,9 +11,9 @@ namespace ConsoleCalculator
     {
         public void Run()
         {
-            Console.WriteLine("Console calculator is run...");
-            Console.WriteLine("Enter 'exit' for exit.");
+            Console.Write("To exit the calculator enter 'exit'.\n\n");
             ICalc consoleCalc = new Calc();
+            Console.Write("Enter expression: ");
             string read = ReadExpression();
             while (read != "exit")
             {
@@ -29,6 +29,7 @@ namespace ConsoleCalculator
                         Console.WriteLine(e.Message,e);
                     }
                 }
+                Console.Write("Enter expression: ");
                 read = ReadExpression();
             }
         }
@@ -38,7 +39,7 @@ namespace ConsoleCalculator
         }
         public static void WriteResult(double res)
         {
-            Console.Write(" = {0}\n\n", res);
+            Console.Write("Result: {0}\n\n", res);
         }
     }
 }

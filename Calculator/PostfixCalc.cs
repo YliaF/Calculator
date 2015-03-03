@@ -73,7 +73,7 @@ namespace Calculator
                         PostfixExpression.Add(stackOperators.Pop());
                     }
                     if (stackOperators.Count() == 0)
-                        throw new Exception("This expression is incorrect");
+                        throw new Exception("This expression is incorrect.\n");
                     stackOperators.Pop();
                 }
                 else
@@ -106,7 +106,7 @@ namespace Calculator
                     }
                     catch (FormatException e)
                     {
-                        throw new FormatException("The expression contains an invalid character '" + token + "'.", e);
+                        throw new FormatException("The expression contains an invalid character '" + token + "'.\n", e);
                     }
                     
                 else
@@ -118,7 +118,7 @@ namespace Calculator
                     }
                     catch(Exception e)
                     {
-                        throw new Exception("This expression is incorrect", e);
+                        throw new Exception("This expression is incorrect.\n", e);
                     }
 
                     try
@@ -132,7 +132,7 @@ namespace Calculator
                     finally
                     {
                         if (Double.IsInfinity(res))
-                            throw new DivideByZeroException("Divide by zero exception");
+                            throw new DivideByZeroException("Divide by zero exception.\n");
                     }
                     stackNumber.Push(res);
                 }
@@ -153,7 +153,7 @@ namespace Calculator
             }
             catch (KeyNotFoundException e)
             {
-                throw new KeyNotFoundException("For operation ' " + token + " ' is not set priority", e);
+                throw new KeyNotFoundException("For operation ' " + token + " ' is not set priority.\n", e);
             }
             
         }

@@ -64,6 +64,24 @@ namespace CalculatorTests
 
             Assert.AreEqual(2, objPostfix.CountedResult);
         }
+
+        [TestMethod]
+        public void AddOperationsPlus()
+        {
+
+            OperationsCalculator op = new OperationsCalculator();
+            op.AddBinaryOperation("^", (x, y) => Math.Pow(x, y));
+            op.SetPriorityOperations("^", 1);
+
+
+            PostfixCalc objPostfix = new PostfixCalc();
+            objPostfix.Operations = op;
+
+            objPostfix.GetPostfix("(10-8)^3-(5+1)");
+
+            Assert.AreEqual(2, objPostfix.CountedResult);
+        }
+       
        
     }
 }

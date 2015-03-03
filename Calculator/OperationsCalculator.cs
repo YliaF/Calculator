@@ -49,19 +49,22 @@ namespace Calculator
         {
 
             if (BinaryOperations.ContainsKey(operation))
-                throw new ArgumentException(string.Format("Operation {0} already exists", operation), "AddBinaryOperation");
+                throw new ArgumentException("Operation " + operation + "already exists.\n", "AddBinaryOperation");
             BinaryOperations.Add(operation, action);
         }
         public void AddUnaryOperation(string operation, Func<double, double> action)
         {
 
             if (BinaryOperations.ContainsKey(operation))
-                throw new ArgumentException(string.Format("Operation {0} already exists", operation), "AddUnaryOperation");
+                throw new ArgumentException("Operation " + operation + "already exists.\n", "AddUnaryOperation");
             UnaryOperations.Add(operation, action);
         }
         public void SetPriorityOperations(string operation, int priority)
-        {   
-            PriorityOperations.Add(operation, priority);
+        {
+            if (priority != 0)
+                PriorityOperations.Add(operation, priority);
+            else
+                throw new ArgumentException("Priority must be greater than zero.\n", "SetPriorityOperations");
         }
     }
 }
