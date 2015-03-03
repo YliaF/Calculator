@@ -38,15 +38,12 @@ namespace Calculator
         }
         public PostfixCalc(string inputExpr)
         {
-            //op.AddBinaryOperation("%", (x, y) => x % y);
-            //op.SetPriorityOperations("%", 3);
             ParserString objParserString = new ParserString(op.OperatorList, inputExpr);
             GetPostfix(objParserString.ResultString);
         }
 
         public PostfixCalc()
         {
-            // TODO: Complete member initialization
         }
         public void GetPostfix(string inputExpr)
         {
