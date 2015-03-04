@@ -19,7 +19,7 @@ namespace Calculator
 
         public string[] ParseExpression(string inputExpression)
         {
-            inputExpression = ProcessingString(inputExpression);
+            inputExpression = Preprocessing(inputExpression);
             return Regex.Split(inputExpression, ParserPattern).Where(ch => !string.IsNullOrEmpty(ch)).ToArray();
         }
 
@@ -36,7 +36,7 @@ namespace Calculator
                     ParserPattern += "|(\\" + op + ")";
             }
         }
-        private static string ProcessingString(string inputString)
+        private static string Preprocessing(string inputString)
         {
             return ReplaceUnarOperator(ReplacementByCommas(inputString));
         }
