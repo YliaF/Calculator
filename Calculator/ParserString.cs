@@ -19,7 +19,7 @@ namespace Calculator
 
         public string[] ParseExpression(string inputExpression)
         {
-            inputExpression = ProcessingString(inputExpression);
+            inputExpression = Preprocessing(inputExpression);
             return Regex.Split(inputExpression, ParserPattern).Where(ch => !string.IsNullOrEmpty(ch)).ToArray();
         }
 
@@ -36,7 +36,7 @@ namespace Calculator
                     ParserPattern += "|(\\" + op + ")";
             }
         }
-        private static string ProcessingString(string inputString)
+        private static string Preprocessing(string inputString)
         {
             return ReplaceUnarOperator(ReplacementByCommas(inputString));
         }
@@ -44,6 +44,7 @@ namespace Calculator
         {
             return inputString.Replace(".", ",");
         }
+        //Заменяет унарный минус в инфиксной записи на знак подчеркивание "_" для постфиксной записи       
         public static string ReplaceUnarOperator(string src)
         {
             return Regex.Replace(Regex.Replace(src, @"(\(-)", "(_"), @"(\A[-]{1})", "_");
