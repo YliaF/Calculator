@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Calculator;
+using Calc;
 
 namespace ConsoleCalculator
 {
@@ -15,8 +15,8 @@ namespace ConsoleCalculator
         }
         static void Main(string[] args)
         {
-            Console.Write("To exit the calculator enter 'exit'.\n\n");
-            ICalc consoleCalc = new Calc();
+            /*Console.Write("To exit the calculator enter 'exit'.\n\n");
+            ICalculator consoleCalc = new Calc();
             Console.Write("Enter expression: ");
             string read = Console.ReadLine();
             while (read != "exit")
@@ -26,7 +26,7 @@ namespace ConsoleCalculator
                     try
                     {
                         consoleCalc.Calculate(read);
-                        WriteResult(consoleCalc.Result);
+                       // WriteResult(consoleCalc.Result);
                     }
                     catch (Exception e)
                     {
@@ -35,7 +35,7 @@ namespace ConsoleCalculator
                 }
                 Console.Write("Enter expression: ");
                 read = Console.ReadLine();
-            }
+            }*/
         }
     }
 }

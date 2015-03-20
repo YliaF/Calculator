@@ -7,7 +7,7 @@
     <ProjectGuid>{FCD362A5-1758-4515-A5E1-78E0D6687528}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Calculator</RootNamespace>
+    <RootNamespace>Calc</RootNamespace>
     <AssemblyName>Calculator</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -39,14 +39,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Calc.cs" />
-    <Compile Include="ICalc.cs" />
+    <Compile Include="Calculator.cs" />
+    <Compile Include="CalculatorPostfix.cs" />
+    <Compile Include="IParsedExpression.cs" />
+    <Compile Include="IPostfixExpression.cs" />
+    <Compile Include="IResultCalculator.cs" />
+    <Compile Include="ResultCalculator.cs" />
+    <Compile Include="ICalculatorPostfix.cs" />
     <Compile Include="IOperations.cs" />
     <Compile Include="IParser.cs" />
     <Compile Include="IPostfix.cs" />
-    <Compile Include="OperationsCalculator.cs" />
-    <Compile Include="ParserString.cs" />
-    <Compile Include="PostfixCalc.cs" />
+    <Compile Include="Operations.cs" />
+    <Compile Include="ParsedExpression.cs" />
+    <Compile Include="Parser.cs" />
+    <Compile Include="Postfix.cs" />
+    <Compile Include="PostfixExpression.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
