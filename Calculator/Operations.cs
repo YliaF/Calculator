@@ -1,24 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Calculator
+namespace Calc
 {
-    public class OperationsCalculator : IOperations
+    public class Operations : IOperations
     {
         private IList<string> operatorList = new List<string>();
         public IList<string> OperatorList
         {
-            get { GetOperatorList(); return operatorList; }
+            get { SetOperatorList(); return operatorList; }
             set { operatorList = value; }
         }
-        public OperationsCalculator()
+        public Operations()
         {
-            GetOperatorList();
+            SetOperatorList();
         }
-        private void GetOperatorList()
+        private void SetOperatorList()
         {
             OperatorList = (BinaryOperations.Keys.ToList<string>().Concat(UnaryOperations.Keys.ToList<string>()).ToList<string>());
         }
