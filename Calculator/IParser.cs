@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Calculator
+﻿
+namespace Calc
 {
-    public interface IParser
+    public interface IParser<T>
     {
-        string[] ParseExpression(string inputExpression);
-        string ParserPattern { get; set; }
+        T Parse(string inputExpression);
+        void Parse(string inputExpression, IParsedExpression<T> parsedExpression);
     }
 }
