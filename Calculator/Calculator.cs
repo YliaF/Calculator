@@ -1,0 +1,8 @@
+﻿
+namespace Calc
+{
+    class Calculator
+    {
+
+    }
+}
