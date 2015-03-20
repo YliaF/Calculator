@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Calculator
+﻿
+namespace Calc
 {
-    public interface IPostfix
+    public interface IPostfix<T>
     {
-        void CreatePostfixExpression(string inputExpression);
-        void Counting();
+        T ConvertToPostfix(IParsedExpression<string[]> parsedExpression);
 
-        IList<string> PostfixExpression { get; set; }
-
-        double CountedResult { get; set; }
+        void ConvertToPostfix(IParsedExpression<string[]> parsedExpression, IPostfixExpression<T> postfixExpression);
     }
 }
