@@ -9,7 +9,7 @@ namespace CalcTests
     public class TestCalculatePostfix
     {
         [TestMethod]
-        public void TestReturnCalculatePostfixExpression()
+        public void TestCalculatePostfixExpression()
         {
             IOperations operations = new Operations();
 
@@ -22,22 +22,6 @@ namespace CalcTests
             resultCalculator.Result = calculatorPostfix.Calculate(postfixExpression);
 
             Assert.AreEqual(0,resultCalculator.Result);
-        }
-        [TestMethod]
-        public void TestVoidCalculatePostfixExpression()
-        {
-            IOperations operations = new Operations();
-
-            IPostfixExpression<IList<string>> postfixExpression = new PostfixExpression()
-            {
-                Result = new string[] { "1", "2", "+", "3", "-" }
-            };
-            
-            ICalculatorPostfix calculatorPostfix = new CalculatorPostfix(operations);
-            IResultCalculator<double> resultCalculator = new ResultCalculator();
-            calculatorPostfix.Calculate(postfixExpression,resultCalculator);
-
-            Assert.AreEqual(0, resultCalculator.Result);
         }
     }
 }

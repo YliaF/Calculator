@@ -9,7 +9,7 @@ namespace CalcTests
     public class TestPostfix
     {
         [TestMethod]
-        public void TestReturnConvertToPostfix()
+        public void TestConvertToPostfix()
         {
             IOperations operations = new Operations();
 
@@ -32,31 +32,6 @@ namespace CalcTests
                 i++;
             }
         }
-        [TestMethod]
-        public void TestVoidConvertToPostfix()
-        {
-            IOperations operations = new Operations();
-
-            string[] test = { "1", "2", "+", "3", "-" };
-
-
-            IParsedExpression<string[]> parsedExpression = new ParsedExpression()
-            {
-                Result = new string[] { "1", "+", "2", "-", "3" }
-            };
-
-            //Постфикс
-            IPostfixExpression<IList<string>> postfixExpression = new PostfixExpression();
-            IPostfix<IList<string>> postfix = new Postfix(operations);
-            postfix.ConvertToPostfix(parsedExpression,postfixExpression);
-
-
-            int i = 0;
-            foreach (string res in postfixExpression.Result)
-            {
-                Assert.AreEqual(test[i], res);
-                i++;
-            }
-        }
+       
     }
 }

@@ -8,7 +8,7 @@ namespace CalcTests
     public class TestParser
     {
         [TestMethod]
-        public void TestReturnParsing()
+        public void TestParsing()
         {
             string inputExpression = "1+2-3";
             string[] test = { "1", "+", "2", "-","3"}; 
@@ -25,25 +25,6 @@ namespace CalcTests
                 Assert.AreEqual(test[i], res);
                 i++;
             }
-        }
-        [TestMethod]
-        public void TestVoidParsing()
-        {
-            string inputExpression = "1+2-3";
-            string[] test = { "1", "+", "2", "-", "3" };
-
-            IOperations operations = new Operations();
-            //Парсинг
-            IParsedExpression<string[]> parsedExpression = new ParsedExpression();
-            IParser<string[]> parser = new Parser(operations);
-            parser.Parse(inputExpression,parsedExpression);
-
-            int i = 0;
-            foreach (string res in parsedExpression.Result)
-            {
-                Assert.AreEqual(test[i], res);
-                i++;
-            }
-        }
+        } 
     }
 }
