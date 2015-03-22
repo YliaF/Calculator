@@ -27,6 +27,7 @@ namespace Calc
         }
         public string[] Parse(string inputExpression)
         {
+            inputExpression = Preprocessing(inputExpression);
             return Regex.Split(inputExpression, PatternParsing).Where(ch => !string.IsNullOrEmpty(ch)).ToArray();
         }
         private static string Preprocessing(string inputString)
