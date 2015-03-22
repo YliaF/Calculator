@@ -29,11 +29,6 @@ namespace Calc
         {
             return Regex.Split(inputExpression, PatternParsing).Where(ch => !string.IsNullOrEmpty(ch)).ToArray();
         }
-        public void Parse(string inputExpression, IParsedExpression<string[]> parsedExpression)
-        {
-            inputExpression = Preprocessing(inputExpression);
-            parsedExpression.Result = Regex.Split(inputExpression, PatternParsing).Where(ch => !string.IsNullOrEmpty(ch)).ToArray();
-        }
         private static string Preprocessing(string inputString)
         {
             return ReplaceUnarOperator(ReplacementByCommas(inputString));
