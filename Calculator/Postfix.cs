@@ -16,7 +16,7 @@ namespace Calc
 
         public Postfix(IOperations operations)
         {
-            Operations = operations;
+            this.Operations = operations;
         }
         public IList<string> ConvertToPostfix(IParsedExpression<string[]> parsedExpression)
         {
