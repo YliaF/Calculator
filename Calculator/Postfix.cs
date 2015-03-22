@@ -18,44 +18,6 @@ namespace Calc
         {
             Operations = operations;
         }
-        public void ConvertToPostfix(IParsedExpression<string[]> parsedExpression, IPostfixExpression<IList<string>> postfixExpression)
-        {
-            IList<string> postfix = new List<string>();
-
-            Stack<string> stackOperators = new Stack<string>();
-            foreach (string token in parsedExpression.Result)
-            {
-                if (token == "(")
-                    stackOperators.Push(token);
-                else if (IsOperation(token))
-                {
-                    while ((stackOperators.Count != 0) && (Priority(stackOperators.Peek()) >= Priority(token)))
-                    {
-                        postfix.Add(stackOperators.Pop());
-                    }
-                    stackOperators.Push(token);
-                }
-                else if (token == ")")
-                {
-                    while ((stackOperators.Count() != 0) && (stackOperators.Peek() != "("))
-                    {
-                        postfix.Add(stackOperators.Pop());
-                    }
-                    if (stackOperators.Count() == 0)
-                        throw new Exception("This expression is incorrect.\n");
-                    stackOperators.Pop();
-                }
-                else
-                {
-                    postfix.Add(token);
-                }
-            }
-            while (stackOperators.Count() != 0)
-            {
-                postfix.Add(stackOperators.Pop());
-            }
-            postfixExpression.Result = postfix;
-        }
         public IList<string> ConvertToPostfix(IParsedExpression<string[]> parsedExpression)
         {
             IList<string> postfix = new List<string>();
