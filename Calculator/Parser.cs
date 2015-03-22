@@ -6,6 +6,13 @@ namespace Calc
     public class Parser : IParser<string[]>
     {
         private string patternParsing = @"(\()|(\))|(_)";
+        private IOperations operations;
+
+        public IOperations Operations
+        {
+            get { return operations; }
+            set { operations = value; }
+        }
 
         public string PatternParsing
         {
@@ -15,11 +22,12 @@ namespace Calc
 
         public Parser(IOperations operations)
         {
-            CreatePatternParsing(operations);
+            this.Operations = operations;
+            CreatePatternParsing();
         }
-        private void CreatePatternParsing(IOperations operations)
+        private void CreatePatternParsing()
         {
-            foreach (string op in operations.OperatorList)
+            foreach (string op in this.Operations.OperatorList)
             {
                 if (op != "_")
                     PatternParsing += "|(\\" + op + ")";
