@@ -1,7 +1,5 @@
 ﻿using System;
-using Ninject;
 using Calc;
-using System.Collections.Generic;
 
 namespace ConsoleCalculator
 {
