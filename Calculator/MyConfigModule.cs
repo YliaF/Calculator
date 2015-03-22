@@ -2,7 +2,7 @@
 using Ninject.Modules;
 using Calc;
 
-namespace ConsoleCalculator
+namespace Calc
 {
     public class MyConfigModule: NinjectModule
     {
